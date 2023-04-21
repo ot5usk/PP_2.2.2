@@ -24,12 +24,9 @@ public class CarServiceImp implements CarService {
 
     @Override
     public List<Car> getCars(Integer count) {
-        List<Car> returnedCars = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            returnedCars.add(cars.get(i));
+        if (count < 0) {
+            count = 0;
         }
-
-        return returnedCars;
+        return cars.stream().limit(count).toList();
     }
 }
